@@ -3,10 +3,10 @@ import LCD_1in44
 import LCD_Config
 import RPi.GPIO as GPIO
 
-import Image
-import ImageDraw
-import ImageFont
-import ImageColor
+from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
+from PIL import ImageColor
 
 LCD = LCD_1in44.LCD()
 image = Image.new("RGB", (LCD.LCD_Dis_Column, LCD.LCD_Dis_Page), "WHITE")
