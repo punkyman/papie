@@ -1,15 +1,23 @@
-#ifndef _ADAFRUIT_GFX_H
-#define _ADAFRUIT_GFX_H
+#pragma once
 
-#if ARDUINO >= 100
- #include "Arduino.h"
- #include "Print.h"
-#else
- #include "WProgram.h"
-#endif
+#define NULL 0
+
+// try to mimmic types defined in stdlib.h
+
+typedef bool boolean;
+
+typedef signed char int8_t;
+typedef unsigned char uint8_t;
+
+typedef short int int16_t;
+typedef short unsigned int uint16_t;
+
+typedef int int32_t;
+typedef unsigned int uint32_t;
+
 #include "gfxfont.h"
 
-class Adafruit_GFX : public Print {
+class Adafruit_GFX /*: public Print */ {
 
  public:
 
@@ -102,15 +110,9 @@ class Adafruit_GFX : public Print {
     cp437(boolean x=true),
     setFont(const GFXfont *f = NULL),
     getTextBounds(char *string, int16_t x, int16_t y,
-      int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h),
-    getTextBounds(const __FlashStringHelper *s, int16_t x, int16_t y,
       int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
 
-#if ARDUINO >= 100
-  virtual size_t write(uint8_t);
-#else
-  virtual void   write(uint8_t);
-#endif
+  void   write(uint8_t);
 
   int16_t height(void) const;
   int16_t width(void) const;
@@ -141,6 +143,8 @@ class Adafruit_GFX : public Print {
   GFXfont
     *gfxFont;
 };
+
+/*
 
 class Adafruit_GFX_Button {
 
@@ -208,4 +212,4 @@ class GFXcanvas16 : public Adafruit_GFX {
   uint16_t *buffer;
 };
 
-#endif // _ADAFRUIT_GFX_H
+*/

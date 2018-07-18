@@ -33,11 +33,10 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #include "Adafruit_GFX.h"
 #include "glcdfont.c"
-#ifdef __AVR__
-  #include <avr/pgmspace.h>
-#elif defined(ESP8266) || defined(ESP32)
-  #include <pgmspace.h>
-#endif
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Many (but maybe not all) non-AVR board installs define macros
 // for compatibility with existing PROGMEM-reading AVR code.
@@ -1019,30 +1018,6 @@ void Adafruit_GFX::getTextBounds(char *str, int16_t x, int16_t y,
     }
 }
 
-// Same as above, but for PROGMEM strings
-void Adafruit_GFX::getTextBounds(const __FlashStringHelper *str,
-        int16_t x, int16_t y, int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h) {
-    uint8_t *s = (uint8_t *)str, c;
-
-    *x1 = x;
-    *y1 = y;
-    *w  = *h = 0;
-
-    int16_t minx = _width, miny = _height, maxx = -1, maxy = -1;
-
-    while((c = pgm_read_byte(s++)))
-        charBounds(c, &x, &y, &minx, &miny, &maxx, &maxy);
-
-    if(maxx >= minx) {
-        *x1 = minx;
-        *w  = maxx - minx + 1;
-    }
-    if(maxy >= miny) {
-        *y1 = miny;
-        *h  = maxy - miny + 1;
-    }
-}
-
 // Return the size of the display (per current rotation)
 int16_t Adafruit_GFX::width(void) const {
     return _width;
@@ -1059,6 +1034,7 @@ void Adafruit_GFX::invertDisplay(boolean i) {
 /***************************************************************************/
 // code for the GFX button UI element
 
+/*
 Adafruit_GFX_Button::Adafruit_GFX_Button(void) {
   _gfx = 0;
 }
@@ -1345,4 +1321,5 @@ void GFXcanvas16::fillScreen(uint16_t color) {
         }
     }
 }
+*/
 
