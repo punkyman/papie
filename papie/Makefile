@@ -4,7 +4,7 @@ OUTPUT_DIR = ./out
 rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))
 
 OBJ_C = $(call rwildcard, , *.cpp)
-OBJ_O = $(patsubst %.cpp,${OUTPUT_DIR}/%.o,$(notdir ${OBJ_C}))
+OBJ_O = $(patsubst %.cpp,$(OUTPUT_DIR)/%.o, $(OBJ_C))
 
 TARGET = ./out/papie
 CC = gcc
@@ -13,11 +13,11 @@ CFLAGS += -g -Wall
 
 LIB = -lwiringPi
 
-${TARGET}:${OBJ_O}
+$(TARGET):$(OBJ_O)
 	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB)
 
-${OUTPUT_DIR}/%.o : $(OBJ_C)
-	$(CC) $(CFLAGS) -c  $< -o $@ $(LIB)
+$(OUTPUT_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@ $(LIB)
 	
 clean :
 	rm $(OUTPUT_DIR)/*.* 
