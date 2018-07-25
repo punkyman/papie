@@ -6,5 +6,5 @@ namespace SDK
 {
     int init();
 
-    Adafruit_GFX* Renderer;
+    extern Adafruit_GFX* Renderer;
 }

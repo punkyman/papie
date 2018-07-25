@@ -97,6 +97,8 @@ void Adafruit_ST77xx::commonInit(const uint8_t *cmdList) {
   pinMode(_dc, OUTPUT);
   pinMode(_cs, OUTPUT);
 
+  wiringPiSPISetupMode(0, 32000000, 0);
+
   // toggle RST low to reset; CS low so it'll listen to us
   CS_LOW();
   if (_rst != -1) {
