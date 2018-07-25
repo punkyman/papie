@@ -16,7 +16,7 @@ CC = gcc
 
 CFLAGS += -g -Wall
 
-LIB = -lwiringPi
+LIB = -lstdc++ -lwiringPi
 
 $(TARGET):$(OBJ_O)
 	$(CC) $(CFLAGS) $(OBJ_O) -o $@ $(LIB)
