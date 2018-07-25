@@ -24,32 +24,14 @@ as well as Adafruit raw 1.8" TFT display
 #ifndef _ADAFRUIT_ST77XXH_
 #define _ADAFRUIT_ST77XXH_
 
-#include "Arduino.h"
-#include "Print.h"
-#include <Adafruit_GFX.h>
+//#include "Print.h"
+#include "../Adafruit_GFX.h"
 
-#if defined(__AVR__) || defined(CORE_TEENSY)
-  #include <avr/pgmspace.h>
-  #define USE_FAST_IO
-  typedef volatile uint8_t RwReg;
-#elif defined(ARDUINO_STM32_FEATHER)
-  typedef volatile uint32 RwReg;
-  #define USE_FAST_IO
-#elif defined(ARDUINO_FEATHER52)
-  typedef volatile uint32_t RwReg;
-  #define USE_FAST_IO
-#elif defined(ESP8266)
-  #include <pgmspace.h>
-#elif defined(__SAM3X8E__)
-  #undef __FlashStringHelper::F(string_literal)
-  #define F(string_literal) string_literal
-  #include <include/pio.h>
-  #define PROGMEM
-  #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
-  #define pgm_read_word(addr) (*(const unsigned short *)(addr))
-  typedef unsigned char prog_uchar;
-#endif
-
+#define F(string_literal) string_literal
+#define PROGMEM
+#define pgm_read_byte(addr) (*(const unsigned char *)(addr))
+#define pgm_read_word(addr) (*(const unsigned short *)(addr))
+typedef unsigned char prog_uchar;
 
 // for 1.44 and mini
 #define ST7735_TFTWIDTH_128  128
@@ -155,9 +137,7 @@ class Adafruit_ST77xx : public Adafruit_GFX {
   inline void DC_HIGH(void);
   inline void DC_LOW(void);
 
-  boolean  _hwSPI;
-
-  int8_t  _cs, _dc, _rst, _sid, _sclk;
+  int8_t  _cs, _dc, _rst;
 
 #if defined(USE_FAST_IO)
   volatile RwReg  *dataport, *clkport, *csport, *dcport;

@@ -20,4 +20,7 @@ $(OUTPUT_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIB)
 	
 clean :
-	rm $(OUTPUT_DIR)/*.* 
+	rm -f $(OUTPUT_DIR)/*.o
+	rm -f $(OUTPUT_DIR)/sdk/*.o
+	rm -f $(OUTPUT_DIR)/sdk/driver/*.o
+
