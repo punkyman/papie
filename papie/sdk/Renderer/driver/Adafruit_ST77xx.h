@@ -94,8 +94,7 @@ class Adafruit_ST77xx : public Adafruit_GFX {
 
  public:
 
-  Adafruit_ST77xx(int8_t CS, int8_t RS, int8_t SID, int8_t SCLK, int8_t RST = -1);
-  Adafruit_ST77xx(int8_t CS, int8_t RS, int8_t RST = -1);
+  Adafruit_ST77xx(int8_t CS, int8_t RS, int8_t RST, int8_t BL);
 
   void     setAddrWindow(uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y1),
            pushColor(uint16_t color),
@@ -137,7 +136,7 @@ class Adafruit_ST77xx : public Adafruit_GFX {
   inline void DC_HIGH(void);
   inline void DC_LOW(void);
 
-  int8_t  _cs, _dc, _rst;
+  int8_t  _cs, _dc, _rst, _bl;
 
 #if defined(USE_FAST_IO)
   volatile RwReg  *dataport, *clkport, *csport, *dcport;

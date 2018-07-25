@@ -14,10 +14,7 @@ int init()
     if(wiringPiSetupGpio() < 0)
         return 1;
 
-    // unused by the display driver, but it does exist on hardware    
-    pinMode(LCD_BL,OUTPUT);
-
-    Adafruit_ST7735* screen = new Adafruit_ST7735(LCD_CS, LCD_DC, LCD_RST);
+    Adafruit_ST7735* screen = new Adafruit_ST7735(LCD_CS, LCD_DC, LCD_RST, LCD_BL);
     screen->initR(INITR_144GREENTAB);
 
     Renderer = screen;

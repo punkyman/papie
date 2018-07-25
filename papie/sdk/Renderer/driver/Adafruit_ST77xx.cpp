@@ -30,11 +30,12 @@ inline uint16_t swapcolor(uint16_t x) {
   return (x << 11) | (x & 0x07E0) | (x >> 11);
 }
 
-Adafruit_ST77xx::Adafruit_ST77xx(int8_t cs, int8_t dc, int8_t rst) 
+Adafruit_ST77xx::Adafruit_ST77xx(int8_t cs, int8_t dc, int8_t rst, int8_t bl) 
   : Adafruit_GFX(ST7735_TFTWIDTH_128, ST7735_TFTHEIGHT_160) {
   _cs   = cs;
   _dc   = dc;
   _rst  = rst;
+  _bl   = bl;
 }
 
 inline void Adafruit_ST77xx::spiwrite(uint8_t c) {
@@ -96,6 +97,10 @@ void Adafruit_ST77xx::commonInit(const uint8_t *cmdList) {
 
   pinMode(_dc, OUTPUT);
   pinMode(_cs, OUTPUT);
+  pinMode(_bl, OUTPUT);
+
+  // activate backlight
+  digitalWrite(_bl, HIGH);
 
   wiringPiSPISetupMode(0, 32000000, 0);
 
