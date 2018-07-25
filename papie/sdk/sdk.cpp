@@ -17,8 +17,11 @@ int init()
     // unused by the display driver, but it does exist on hardware    
     pinMode(LCD_BL,OUTPUT);
 
-    Renderer = new Adafruit_ST7735(LCD_CS, LCD_DC, LCD_RST);
- 
+    Adafruit_ST7735* screen = new Adafruit_ST7735(LCD_CS, LCD_DC, LCD_RST);
+    screen->initR(INITR_144GREENTAB);
+
+    Renderer = screen;
+
     return 0;
 }    
 
