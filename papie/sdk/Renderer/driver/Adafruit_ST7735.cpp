@@ -203,7 +203,9 @@ void Adafruit_ST7735::initR(uint8_t options) {
 
   tabcolor = options;
 
-  setRotation(0);
+  setRotation(3);
+
+  fillScreen(0);
 }
 
 
