@@ -6,6 +6,11 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 OBJ_C = $(call rwildcard, , *.cpp)
 OBJ_O = $(patsubst %.cpp,$(OUTPUT_DIR)/%.o, $(OBJ_C))
 
+OBJ_DIRS:=$(dir $(OBJ_O))
+
+# command executed when make runs to create out dir hierarchy
+MK_OBJ_DIRS:=$(shell mkdir --parents $(OBJ_DIRS))
+
 TARGET = ./out/papie
 CC = gcc
 
@@ -20,7 +25,5 @@ $(OUTPUT_DIR)/%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIB)
 	
 clean :
-	rm -f $(OUTPUT_DIR)/*.o
-	rm -f $(OUTPUT_DIR)/sdk/*.o
-	rm -f $(OUTPUT_DIR)/sdk/driver/*.o
+	rm -rf $(OUTPUT_DIR)
 
