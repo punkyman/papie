@@ -3,9 +3,10 @@ mini game console based on raspberry pi zero and waveshare display hat
 
 ## Hardware
 
+![](./hardware.jpg)
+
 The hardware uses mini-computer Raspberry pi zero (with the w option for wireless) :
 https://www.raspberrypi.org/products/raspberry-pi-zero/
-
 
 On top of it, there is a hat from waveshare that provides a screen and some inputs, while keeping the form factor of the raspberry pi zero :
 https://www.waveshare.com/wiki/1.44inch_LCD_HAT
